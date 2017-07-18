@@ -1,3 +1,3 @@
-# imageViewer
+#ImageViewer
 
-Two pictures are never the same.
+No two images are ever the same.
