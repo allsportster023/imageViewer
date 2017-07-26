@@ -74,10 +74,10 @@ class ImageObject extends React.Component {
         </div>
         <div className="row">
           <a href={"#myLargeModalLabel"+this.props.index} data-toggle="modal" data-target={".bs-example-modal-lg"+this.props.index}>
-            <img className="image-style" src="../../images/bwPic.jpg" width={this.props.appImgCount > 4 ? "85%" : "250px"} />
+            <img className="image-style" src="../../images/bwPic.jpg" width={this.props.appImgCount > 4 ? "85%" : "300px"} />
           </a>
           {/*TODO: Use a blank picture for no picture added*/}
-          <div className={"modal fade bs-example-modal-lg"+this.props.index} role="dialog" aria-labelledby={"myLargeModalLabel"+this.props.index}>
+          <div className={"modal fade bs-example-modal-lg"+this.props.index} tabindex="-1" role="dialog" aria-labelledby={"myLargeModalLabel"+this.props.index}>
             <div className="modal-dialog modal-lg" role="document">
               <div className="modal-content">
                 <img src="../../images/bwPic.jpg" width="100%" />

@@ -55,24 +55,24 @@ class WeatherObject extends React.Component {
                 Precip
                 <i className="wi wi-rain icon-stl"></i>
               </p>
-              <p className="tableYaxisLabels">
-                Wind
-                <i className="wi wi-strong-wind icon-stl"></i>
-              </p>
-              <p className="tableYaxisLabels">
-                Fires
-                <i className="wi wi-fire icon-stl"></i>
-              </p>
-              <p className="tableYaxisLabels">
-                T-Storms
-                <i className="wi wi-storm-showers icon-stl"></i>
-              </p>
-            </td>
-            <td>
-              <LineChart width={1200} height={250} data={realData} syncId="anyId"
-                         margin={{top: 0, right: 30, left: -50, bottom: 0}} style={{float: "left"}}>
+                  <p className="tableYaxisLabels">
+                    Wind
+                    <i className="wi wi-strong-wind icon-stl"></i>
+                  </p>
+                  <p className="tableYaxisLabels">
+                    Fires
+                    <i className="wi wi-fire icon-stl"></i>
+                  </p>
+                  <p className="tableYaxisLabels">
+                    T-Storms
+                    <i className="wi wi-storm-showers icon-stl"></i>
+                  </p>
+              </td>
+              <td>
+                <LineChart width={1280} height={250} data={realData} syncId="anyId"
+                           margin={{top: 0, right: 30, left: -50, bottom: 0}} style={{float: "left"}}>
 
-                <XAxis dataKey="date" tick={{stroke:'white'}} tickLine={{stroke:'white'}} axisLine={{stroke:'white'}} interval="preserveStartEnd" padding={{left: 0, right: 0}} tickFormatter={this.dateFormat}/>
+                <XAxis dataKey="date" tick={{stroke:'white'}} tickLine={{stroke:'white'}} axisLine={{stroke:'white'}} padding={{left: 0, right: 0}} tickFormatter={this.dateFormat}/>
                 <YAxis axisLine={false} tickLine={false} ticks={this.fields}/>
 
                 <Tooltip itemSorter={(item1, item2) => 1} wrapperStyle={{color: 'black'}}/>
@@ -83,8 +83,8 @@ class WeatherObject extends React.Component {
                           dot={false}/>)
                 })}
 
-                <ReferenceLine x="2017-07-02T03:00:00Z" stroke="lightgray"/>
-                <ReferenceLine x="2017-07-06T03:00:00Z" stroke="lightgray"/>
+                <ReferenceLine x="2017-07-02T06:00:00Z" stroke="lightgray"/>
+                <ReferenceLine x="2017-07-06T06:00:00Z" stroke="lightgray"/>
                 <ReferenceLine x="2017-07-10T06:00:00Z" stroke="lightgray"/>
                 <Dot r={0}/>
               </LineChart>

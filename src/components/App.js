@@ -5,9 +5,9 @@ import AppMain from './AppMain';
 const App = ({children}) => (
   <div>
     <header>
-      <img className="logo" src="../../images/GenericLogo2.png"></img>
     </header>
     <section>
+      <img className="logo" src="../../images/GenericLogo2.png"></img>
       <AppMain/>
     </section>
   </div>
