@@ -13,8 +13,8 @@ class AddItemObject extends React.Component {
   render() {
 
     return (
-      <div id="addItemDiv" onClick={this.props.addAction} >
-        <span className="helper" />
+      <div id="addItemDiv" className="noselect" onClick={this.props.addAction} >
+        <span className="helper noselect" />
         <img src="../../images/green-plus-sign.png" width="100px"/>
       </div>
     )}

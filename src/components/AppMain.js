@@ -8,28 +8,60 @@ class AppMain extends React.Component {
   constructor(props) {
     super(props);
 
+    this.availableWeatherParams = ["Rain", "Wind", "Fires", "T-Storms"];
+
     this.state = {
       boxCount: 1,
-      images: []
+      images: [null]
+    };
+  }
+
+  addImageData(img, index){
+
+    if(this.state.images[index] != img) {
+      this.state.images[index] = img;
+
+      console.log(this.state.images);
+
+      this.setState({image: this.state.images});
+
     }
   }
 
-  componentDidUpdate(nextProps, nextState) {
-    console.log("AppMain: Component Did Update");
+  addItem() {
+
+    const nextBoxCount = this.state.boxCount + 1;
+
+    if (nextBoxCount < 7) {
+
+      this.state.boxCount++;
+      this.state.images.push(null);
+
+      this.setState({boxCount: this.state.boxCount, images: this.state.images});
+    }
   }
 
-  addItem() {
-    if (this.state.boxCount++ < 7)
-      this.setState({boxCount: this.state.boxCount});
+  removeImage(data, index){
+
+    if (index > -1 && this.state.boxCount > 1) {
+      console.log("Removing Index: "+index);
+      this.state.images.splice(index, 1);
+      this.state.boxCount = this.state.boxCount-1;
+
+      this.setState({boxCount: this.state.boxCount, images: this.state.images});
+    }
+
   }
 
   render() {
 
+    const _this = this;
     let items = [];
 
-    for (let i = 0; i < this.state.boxCount; i++) {
-      items.push(<td key={i}><ImageObject index={i} appImgCount={this.state.boxCount}/></td>)
-    }
+    this.state.images.map(function (img, i) {
+      items.push(<td key={i}><ImageObject index={i} appImgCount={_this.state.images.length} imageData={img}
+                                          addImage={_this.addImageData.bind(_this)} removeImage={_this.removeImage.bind(_this)}/></td>)
+    });
 
     return (
       <div>
@@ -39,17 +71,17 @@ class AppMain extends React.Component {
               <div className="row">
                 <table id="imagesTable">
                   <tbody>
-                    <tr>
-                      { items }
-                    </tr>
+                  <tr>
+                    { items }
+                  </tr>
                   </tbody>
                 </table>
               </div>
               <div className="row">
-                <WeatherObject maxDate="2017-07-10" minDate="2017-07-05"/>
+                <WeatherObject fields={this.availableWeatherParams} images={this.state.images} />
               </div>
             </div>
-            <div className="col-md-1">
+            <div className="col-md-1 nopad">
               <AddItemObject addAction={this.addItem.bind(this)}/>
             </div>
           </div>

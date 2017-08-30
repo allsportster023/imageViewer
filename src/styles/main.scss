@@ -51,6 +51,40 @@ section {
     color: white;
   }
 }
+
+ul.vertGrp
+{
+  display: table;
+  table-layout: inherit;
+  width: 70px;
+  height: 82%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: 40px;
+}
+
+li.tableYaxisLabels
+{
+  text-align: center;
+  display: table-row;
+}
+i.wi
+{
+  display: table-cell;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.nopad {
+  padding: 0px;
+}
 .logo {
   width: 12%;
   padding: 0px;
@@ -58,7 +92,7 @@ section {
 }
 .tableYaxisLabels {
   width: 90px;
-  padding-top: 16px;
+  //padding-top: 16px;
 }
 .top-pad5 {
   margin-top: 5%;
@@ -136,6 +170,15 @@ section {
   height: 100%;
   vertical-align: middle;
 }
+
+#closeButton {
+  opacity: 0.1;
+}
+
+#closeButton:hover {
+  opacity: 1;
+}
+
 .image-style {
   box-shadow: 3px 3px 10px black;
 }
@@ -179,6 +222,7 @@ section {
   border-style: none;
 }
 .chart-label {
+  position: relative;
   font-size: 12px;
   text-align: right;
   width: 28px;
@@ -190,4 +234,60 @@ section {
 .recharts-cartesian-axis-tick {
   color: white;
   font-size: 12px;
+}
+
+#floatIcon {
+  position: absolute;
+  top: 0px !important;
+  left: 0px !important;
+}
+
+.dropdown-menu {
+  width: 190px;
+  color: black;
+}
+
+.material-switch > input[type="checkbox"] {
+  display: none;
+}
+
+.material-switch > label {
+  cursor: pointer;
+  height: 0px;
+  position: relative;
+  width: 40px;
+}
+
+.material-switch > label::before {
+  background: rgb(0, 0, 0);
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  content: '';
+  height: 16px;
+  margin-top: -8px;
+  position:absolute;
+  opacity: 0.3;
+  transition: all 0.4s ease-in-out;
+  width: 40px;
+}
+.material-switch > label::after {
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  content: '';
+  height: 24px;
+  left: -4px;
+  margin-top: -8px;
+  position: absolute;
+  top: -4px;
+  transition: all 0.3s ease-in-out;
+  width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+  background: inherit;
+  opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+  background: inherit;
+  left: 20px;
 }
