@@ -47,6 +47,7 @@ class AppMain extends React.Component {
       console.log("Removing Index: "+index);
       this.state.images.splice(index, 1);
       this.state.boxCount = this.state.boxCount-1;
+      console.log(this.state.images);
 
       this.setState({boxCount: this.state.boxCount, images: this.state.images});
     }
@@ -55,11 +56,13 @@ class AppMain extends React.Component {
 
   render() {
 
+    // console.log(this.state.images);
     const _this = this;
     let items = [];
-
+    const neededWidth = 100.0/this.state.boxCount;
     this.state.images.map(function (img, i) {
-      items.push(<td key={i}><ImageObject index={i} appImgCount={_this.state.images.length} imageData={img}
+      console.log(img);
+      items.push(<td key={i} style={{width: neededWidth+"%"}}><ImageObject index={i} appImgCount={_this.state.images.length} imageData={img}
                                           addImage={_this.addImageData.bind(_this)} removeImage={_this.removeImage.bind(_this)}/></td>)
     });
 

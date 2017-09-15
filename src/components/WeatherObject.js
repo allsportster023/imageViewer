@@ -4,7 +4,7 @@
 
 import React from 'react';
 import moment from 'moment';
-import {LineChart, Line, ReferenceLine, Dot, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
+import {LineChart, Line, ReferenceLine, Dot, XAxis, YAxis, ResponsiveContainer, Tooltip} from 'recharts';
 
 const CustomizedLabel = React.createClass({
   render () {
@@ -179,28 +179,30 @@ class WeatherObject extends React.Component {
               </ul>
             </td>
             <td>
-              <LineChart width={1223} height={250} data={this.newRealData}
-                         margin={{top: 0, right: 30, left: -50, bottom: 0}} style={{float: "left"}}>
+              <ResponsiveContainer>
+                <LineChart data={this.newRealData}
+                           margin={{top: 0, right: 30, left: -50, bottom: 0}} style={{float: "left"}}>
 
-                <XAxis dataKey="date" tick={{stroke: 'white'}} tickLine={{stroke: 'white'}} axisLine={{stroke: 'white'}}
-                       padding={{left: 0, right: 0}} tickFormatter={this.dateFormat}/>
-                <YAxis axisLine={false} tickLine={false} ticks={this.fields}/>
+                  <XAxis dataKey="date" tick={{stroke: 'white'}} tickLine={{stroke: 'white'}} axisLine={{stroke: 'white'}}
+                         padding={{left: 0, right: 0}} tickFormatter={this.dateFormat}/>
+                  <YAxis axisLine={false} tickLine={false} ticks={this.fields}/>
 
-                <Tooltip itemSorter={(item1, item2) => 1} wrapperStyle={{color: 'black'}}/>
+                  <Tooltip itemSorter={(item1, item2) => 1} wrapperStyle={{color: 'black'}}/>
 
-                {this.state.selectedFields.map(function (k, idx) {
-                  return (
-                    <Line key={idx} type='monotone' dataKey={k} stroke={colors[k.charAt(0).toUpperCase() + k.slice(1)]}
-                          dot={false}/>)
-                })}
+                  {this.state.selectedFields.map(function (k, idx) {
+                    return (
+                      <Line key={idx} type='monotone' dataKey={k} stroke={colors[k.charAt(0).toUpperCase() + k.slice(1)]}
+                            dot={false}/>)
+                  })}
 
-                {this.props.images.map(function (e, idx) {
-                  if(e != null)
-                    return (<ReferenceLine key={idx} x={new Date(e.datetime).toISOString().replace(".000","")} label={<CustomizedLabel value={e.id}/>} stroke="lightgray" />);
-                })}
+                  {this.props.images.map(function (e, idx) {
+                    if(e != null)
+                      return (<ReferenceLine key={idx} x={new Date(e.datetime).toISOString().replace(".000","")} label={<CustomizedLabel value={e.id}/>} stroke="lightgray" />);
+                  })}
 
-                <Dot r={0}/>
-              </LineChart>
+                  <Dot r={0}/>
+                </LineChart>
+              </ResponsiveContainer>
             </td>
           </tr>
           </tbody>

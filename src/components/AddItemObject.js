@@ -15,7 +15,7 @@ class AddItemObject extends React.Component {
     return (
       <div id="addItemDiv" className="noselect" onClick={this.props.addAction} >
         <span className="helper noselect" />
-        <img src="../../images/green-plus-sign.png" width="100px"/>
+        <img src="../../images/green-plus-sign.png" width="100%"/>
       </div>
     )}
 }

@@ -45,6 +45,8 @@ class ImageObject extends React.Component {
 
     let imageAlreadyLoaded = true;
 
+    console.log(this.state.typedImageId);
+
     try{
       const dateTime = this.state.image.datetime;
     } catch(e) {
@@ -63,7 +65,7 @@ class ImageObject extends React.Component {
               <b>Image:</b>
             </div>
           </span>
-          <input type="text" style={{color: "black"}} onChange={this.handleInputTyping.bind(this)} onKeyDown={this.handleKeyDown.bind(this)} value={(this.state.typedImageId ? this.state.typedImageId : "")}/>
+          <input type="text" style={{color: "black", width: "150px"}} onChange={this.handleInputTyping.bind(this)} onKeyDown={this.handleKeyDown.bind(this)} value={(this.state.typedImageId ? this.state.typedImageId : "")}/>
           <br />
           <button type="button" style={{marginTop: "5px"}} className="btn btn-info"
                   onClick={this.searchForImage.bind(this)} >Search
@@ -108,7 +110,7 @@ class ImageObject extends React.Component {
           <a href={"#myLargeModalLabel" + this.props.index} data-toggle="modal"
              data-target={".bs-example-modal-lg" + this.props.index}>
             <img className="image-style" src="../../images/bwPic.jpg"
-                 width={this.props.appImgCount > 4 ? "92%" : "300px"}/>
+                 height={"105"}/>
           </a>
           {/*TODO: Use a blank picture for no picture added*/}
           <div className={"modal fade bs-example-modal-lg" + this.props.index} role="dialog"
@@ -127,3 +129,5 @@ class ImageObject extends React.Component {
 }
 
 export default ImageObject
+
+// width={this.props.appImgCount > 4 ? "92%" : "300px"}/>
