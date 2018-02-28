@@ -3,19 +3,17 @@
  */
 
 import React from 'react';
+import '../styles/main.css';
+import plusSign from '../images/green-plus-sign.png';
 
 class AddItemObject extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
 
     return (
       <div id="addItemDiv" className="noselect" onClick={this.props.addAction} >
         <span className="helper noselect" />
-        <img src="../../images/green-plus-sign.png" width="100%"/>
+        <img src={plusSign} width="100%" alt={"Click here to add images"}/>
       </div>
     )}
 }

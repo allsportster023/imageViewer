@@ -2,96 +2,116 @@ import React from 'react';
 import ImageObject from './ImageObject';
 import AddItemObject from './AddItemObject';
 import WeatherObject from './WeatherObject';
+import '../styles/main.css';
+
 
 class AppMain extends React.Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.availableWeatherParams = ["Rain", "Wind", "Fires", "T-Storms"];
-
-    this.state = {
-      boxCount: 1,
-      images: [null]
-    };
-  }
-
-  addImageData(img, index){
-
-    if(this.state.images[index] != img) {
-      this.state.images[index] = img;
-
-      console.log(this.state.images);
-
-      this.setState({image: this.state.images});
+        this.state = {
+            boxCount: 1,
+            images: [null]
+        };
 
     }
-  }
 
-  addItem() {
+    //When an image is found, add it to the list
+    //  of images that we currently have
+    addImageData(img, index) {
 
-    const nextBoxCount = this.state.boxCount + 1;
+        let images = this.state.images.concat([]);
 
-    if (nextBoxCount < 7) {
+        if (this.state.images[index] !== img) {
+            images[index] = img;
 
-      this.state.boxCount++;
-      this.state.images.push(null);
+            console.log(img);
 
-      this.setState({boxCount: this.state.boxCount, images: this.state.images});
-    }
-  }
+            this.setState({images: images});
 
-  removeImage(data, index){
-
-    if (index > -1 && this.state.boxCount > 1) {
-      console.log("Removing Index: "+index);
-      this.state.images.splice(index, 1);
-      this.state.boxCount = this.state.boxCount-1;
-      console.log(this.state.images);
-
-      this.setState({boxCount: this.state.boxCount, images: this.state.images});
+        }
     }
 
-  }
+    //Add a null image object to the app when
+    //  the user presses the PLUS button
+    addItem() {
 
-  render() {
+        const nextBoxCount = this.state.boxCount + 1;
 
-    // console.log(this.state.images);
-    const _this = this;
-    let items = [];
-    const neededWidth = 100.0/this.state.boxCount;
-    this.state.images.map(function (img, i) {
-      console.log(img);
-      items.push(<td key={i} style={{width: neededWidth+"%"}}><ImageObject index={i} appImgCount={_this.state.images.length} imageData={img}
-                                          addImage={_this.addImageData.bind(_this)} removeImage={_this.removeImage.bind(_this)}/></td>)
-    });
+        //Only allow a given number of image objects to be
+        // added to the app
+        if (nextBoxCount < 7) {
 
-    return (
-      <div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-10 col-md-offset-1">
-              <div className="row">
-                <table id="imagesTable">
-                  <tbody>
-                  <tr>
-                    { items }
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="row">
-                <WeatherObject fields={this.availableWeatherParams} images={this.state.images} />
-              </div>
+            //Add a null image to the image list
+            this.setState({boxCount: this.state.boxCount + 1, images: this.state.images.concat([null])});
+
+        }
+    }
+
+    //Remove the image and the component when a user clicks
+    //  the red X in the image component
+    removeImage(data, index) {
+
+        let images = this.state.images.concat([]);
+
+        //Only remove if we have more than one image object and that the
+        //  given index is valid
+        if (index > -1 && this.state.boxCount > 1) {
+            console.log("Removing Index: " + index);
+            images.splice(index, 1);
+
+            this.setState({boxCount: this.state.boxCount - 1, images: images});
+        }
+
+    }
+
+    render() {
+
+        // console.log(this.state.images);
+        let imageObjects = [];
+        const neededWidth = 100.0 / this.state.boxCount;
+
+        const images = this.state.images.concat([]);
+
+        //Create an ImageObject for every image that we have
+        for (let i = 0; i < this.state.images.length; i++) {
+            imageObjects.push(
+                <td key={i} style={{width: neededWidth + "%"}}>
+                    <ImageObject index={i}
+                                 appImgCount={images.length}
+                                 imageData={images[i]}
+                                 addImage={this.addImageData.bind(this)}
+                                 removeImage={this.removeImage.bind(this)}/>
+                </td>)
+        }
+
+        return (
+            <div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-10 col-md-offset-1">
+                            <div className="row">
+                                <table id="imagesTable">
+                                    <tbody>
+                                    <tr>
+                                        {imageObjects}
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="row">
+                                <WeatherObject images={images}/>
+                            </div>
+                        </div>
+                        <div className="col-md-1 nopad">
+                            <AddItemObject addAction={this.addItem.bind(this)}/>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="col-md-1 nopad">
-              <AddItemObject addAction={this.addItem.bind(this)}/>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+        )
+    }
 }
 
 export default AppMain

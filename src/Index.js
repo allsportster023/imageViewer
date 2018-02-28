@@ -1,12 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import ReactDOM from 'react-dom';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 import App from './components/App';
+import registerServiceWorker from './registerServiceWorker';
 
-window.React = React;
-
-render(
-  (<Router history={hashHistory}>
-    <Route path="/" component={App} />
-  </Router>), document.getElementById('content')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
