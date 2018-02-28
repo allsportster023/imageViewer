@@ -1,11 +1,5 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-.tmp
-.idea
-dist
-.publish
-.DS_Store
-
 # dependencies
 /node_modules
 
@@ -14,6 +8,7 @@ dist
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -21,6 +16,9 @@ dist
 .env.development.local
 .env.test.local
 .env.production.local
+.tmp
+.idea
+.publish
 
 npm-debug.log*
 yarn-debug.log*
